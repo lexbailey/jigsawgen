@@ -35,11 +35,15 @@ random.seed(0)
 def cellcentre(x, y):
     return (x+0.5)*onecellw, (y+0.5)*onecellh
 
-def blob_start(direction, cellcentre):
+def blob_start(direction, cellcentre, invert=False):
     toedgeh = (onecellh/2)
     toedgew = (onecellw/2)
-    offseth = toedgeh + (blobh*1.25)
-    offsetw = toedgew + (blobw*1.25)
+    if invert:
+        offseth = toedgeh - (blobh*1.25)
+        offsetw = toedgew - (blobw*1.25)
+    else:
+        offseth = toedgeh + (blobh*1.25)
+        offsetw = toedgew + (blobw*1.25)
 
     if direction=='up':
         return cellcentre[0] - toedgew, cellcentre[1] - offseth
@@ -72,7 +76,8 @@ def edge_line(dwg, centre, startpoint, endpoint, blobdir):
     connector_end = dist + (width/2)
     path.push("L", *partial_line(startpoint, endpoint, connector_start))
 
-    blob_s = blob_start(blobdir, centre)
+    inv = random.choice([True, False])
+    blob_s = blob_start(blobdir, centre, invert=inv)
 
     conn_1 = partial_line(startpoint, endpoint, connector_start-width/2, onto=blob_s)
     conn_2 = partial_line(startpoint, endpoint, connector_end+width/2, onto=blob_s)
