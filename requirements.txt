@@ -1,0 +1,2 @@
+pillow >= 4.2.1
+svgwrite >= 1.1.11
