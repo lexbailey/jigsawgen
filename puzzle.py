@@ -29,16 +29,8 @@ args = parser.parse_args()
 # Load the image, get the size
 baseimage = cv2.imread(args.image)
 imgheight, imgwidth, _ = baseimage.shape
-print(imgwidth)
-print(imgheight)
-print(args.widthmm)
-print(args.heightmm)
 scalew = args.widthmm/imgwidth
 scaleh = args.heightmm/imgheight
-print(scalew)
-print(scaleh)
-print(scalew*imgwidth)
-print(scaleh*imgheight)
 
 # Detect edges
 edgeimage = cv2.Canny(baseimage, args.t1, args.t2)
@@ -130,7 +122,6 @@ def edge_line(dwg, centre, startpoint, endpoint, blobdir, flat=False):
     dwg.add(path)
 
 for x, y in itertools.product(range(args.cellsw), range(args.cellsh)):
-    #print("%d, %d" % (x,y))
     xmm = x * onecellw
     ymm = y * onecellh
 
@@ -157,7 +148,6 @@ for x, y in itertools.product(range(args.cellsw), range(args.cellsh)):
     quantized = quantized.reshape(imgslice.shape)
 
     dominant_colour = palette[np.argmax(itemfreq(labels)[:, -1])]
-    #print(dominant_colour)
 
     centre = cellcentre(x, y)
 
