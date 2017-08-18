@@ -4,10 +4,10 @@ import itertools
 import cv2
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("image")
-parser.add_argument("--t1", required=True, type=int)
-parser.add_argument("--t2", required=True, type=int)
+parser = argparse.ArgumentParser(description="Test image edge detection thresholds")
+parser.add_argument("image", help="Input image file")
+parser.add_argument("--t1", required=True, type=int, help="Threshold 1")
+parser.add_argument("--t2", required=True, type=int, help="Threshold 2")
 args = parser.parse_args()
 
 baseimage = cv2.imread(args.image, 0)

@@ -14,15 +14,15 @@ import numpy as np
 from scipy.stats import itemfreq
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("image")
-parser.add_argument("--widthmm", type=float, required=True)
-parser.add_argument("--heightmm", type=float, required=True)
-parser.add_argument("--cellsw", type=int, required=True)
-parser.add_argument("--cellsh", type=int, required=True)
-parser.add_argument("--t1", required=True, type=int)
-parser.add_argument("--t2", required=True, type=int)
-parser.add_argument("--colours", default=3, type=int)
+parser = argparse.ArgumentParser(description="Generate an evil jigsaw puzzle for laser cutting")
+parser.add_argument("image" , help="Path to image file")
+parser.add_argument("--widthmm", type=float, required=True, help="Width of resulting jigsaw (mm)")
+parser.add_argument("--heightmm", type=float, required=True, help="Height of resulting jigsaw")
+parser.add_argument("--cellsw", type=int, required=True, help="Number of jigsaw pieces in horizontal axis")
+parser.add_argument("--cellsh", type=int, required=True, help="Number of jigsaw pieces in vertical axis")
+parser.add_argument("--t1", required=True, type=int, help="Edge detection threshold 1 (use edges.py to help decide thresholdss quickly)")
+parser.add_argument("--t2", required=True, type=int, help="Edge detection threshold 2")
+parser.add_argument("--colours", default=3, type=int, help="Number of colours to use in final jigsaw (default=3)")
 
 args = parser.parse_args()
 
